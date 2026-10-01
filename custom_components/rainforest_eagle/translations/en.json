@@ -1,0 +1,43 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication",
+      "no_meters_connected": "No meters are currently connected. Ensure your meter is connected and try again.",
+      "unknown": "Unexpected error",
+      "unknown_device_type": "Unable to determine the type of Rainforest Eagle device. Please ensure your device is supported.",
+      "unsupported_device_type": "This type of Rainforest Eagle device is not supported."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "cloud_id": "Cloud ID",
+          "host": "Host",
+          "install_code": "Installation code"
+        },
+        "data_description": {
+          "host": "The hostname or IP address of your Rainforest gateway."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "energy_price": {
+        "name": "Energy price"
+      },
+      "power_demand": {
+        "name": "Power demand"
+      },
+      "total_energy_delivered": {
+        "name": "Total energy delivered"
+      },
+      "total_energy_received": {
+        "name": "Total energy received"
+      }
+    }
+  }
+}

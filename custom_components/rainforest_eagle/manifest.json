@@ -1,0 +1,26 @@
+{
+  "domain": "rainforest_eagle",
+  "name": "Rainforest Eagle",
+  "codeowners": [
+    "@abirismyname"
+  ],
+  "config_flow": true,
+  "dhcp": [
+    {
+      "macaddress": "D8D5B9*"
+    }
+  ],
+  "documentation": "https://github.com/abirismyname/rainforest_eagle_custom",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "loggers": [
+    "aioeagle",
+    "eagle100"
+  ],
+  "requirements": [
+    "aioeagle==1.1.1",
+    "eagle100==0.1.1"
+  ],
+  "version": "1.0.0",
+  "issue_tracker": "https://github.com/abirismyname/rainforest_eagle_custom/issues"
+}
