@@ -9,9 +9,9 @@ from eagle100 import Eagle as Eagle100Reader
 from requests.exceptions import ConnectionError as ConnectError, HTTPError, Timeout
 
 from homeassistant.exceptions import HomeAssistantError
-from homeassistant.helpers import aiohttp_client
 
 from .const import TYPE_EAGLE_100, TYPE_EAGLE_200
+from .hub import create_hub
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -32,9 +32,7 @@ class InvalidAuth(RainforestError):
 
 async def async_get_type(hass, cloud_id, install_code, host):
     """Try API call 'get_network_info' to see if target is Eagle-100 or Eagle-200."""
-    hub = aioeagle.EagleHub(
-        aiohttp_client.async_get_clientsession(hass), cloud_id, install_code, host=host
-    )
+    hub = create_hub(hass, cloud_id, install_code, host)
 
     try:
         async with asyncio.timeout(30):

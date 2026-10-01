@@ -28,9 +28,7 @@ def create_schema(user_input: dict[str, Any] | None) -> vol.Schema:
     return vol.Schema(
         {
             vol.Required(CONF_HOST, default=user_input.get(CONF_HOST)): str,
-            vol.Required(
-                CONF_CLOUD_ID, default=user_input.get(CONF_CLOUD_ID)
-            ): str,
+            vol.Required(CONF_CLOUD_ID, default=user_input.get(CONF_CLOUD_ID)): str,
             vol.Required(
                 CONF_INSTALL_CODE, default=user_input.get(CONF_INSTALL_CODE)
             ): str,

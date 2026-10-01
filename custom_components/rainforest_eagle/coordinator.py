@@ -10,7 +10,6 @@ from eagle100 import Eagle as Eagle100Reader
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, CONF_TYPE
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import aiohttp_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import (
@@ -20,6 +19,7 @@ from .const import (
     TYPE_EAGLE_100,
 )
 from .data import UPDATE_100_ERRORS
+from .hub import create_hub
 
 type RainforestEagleConfigEntry = ConfigEntry[EagleDataCoordinator]
 
@@ -74,11 +74,11 @@ class EagleDataCoordinator(DataUpdateCoordinator):
     async def _async_update_data_200(self):
         """Get the latest data from the Eagle-200 device."""
         if (eagle200_meter := self.eagle200_meter) is None:
-            hub = aioeagle.EagleHub(
-                aiohttp_client.async_get_clientsession(self.hass),
+            hub = create_hub(
+                self.hass,
                 self.cloud_id,
                 self.config_entry.data[CONF_INSTALL_CODE],
-                host=self.config_entry.data[CONF_HOST],
+                self.config_entry.data[CONF_HOST],
             )
             eagle200_meter = aioeagle.ElectricMeter.create_instance(
                 hub, self.hardware_address

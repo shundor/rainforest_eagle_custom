@@ -5,6 +5,14 @@ A private copy of Home Assistant's built-in
 integration, used to carry a short-term workaround for an EAGLE-3 firmware bug
 until Rainforest Automation ships a firmware fix.
 
+## The workaround
+
+EAGLE-3 firmware answers HTTP API calls on port 80 with a `301` redirect to
+`https://192.168.7.1/...`, which is unreachable, so setup and polling fail.
+This copy skips HTTP and talks to `https://<eagle-ip>/cgi-bin/post_manager`
+directly, with certificate verification disabled because the EAGLE uses a
+self-signed certificate (see `hub.py`). EAGLE-100 devices are unaffected.
+
 It uses the **same domain** (`rainforest_eagle`), so it transparently replaces
 the built-in integration. Existing config entries, devices, entities and
 history keep working — no reconfiguration needed.
@@ -84,7 +92,8 @@ restart.
 - Derived from Home Assistant Core (Apache License 2.0, see `LICENSE.md`).
   Changes from upstream: `probatio` replaced with `voluptuous` for
   compatibility with released Home Assistant versions, `version` added to the
-  manifest, and `translations/en.json` generated from `strings.json`.
+  manifest, `translations/en.json` generated from `strings.json`, and the
+  HTTPS workaround in `hub.py` (used by `data.py` and `coordinator.py`).
 - Because this overrides a core integration, upstream fixes to
   `rainforest_eagle` will not reach you while it is installed. Remove it once
   it is no longer needed.
