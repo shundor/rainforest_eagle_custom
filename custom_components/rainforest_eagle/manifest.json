@@ -1,6 +1,6 @@
 {
   "domain": "rainforest_eagle",
-  "name": "Rainforest Eagle",
+  "name": "Rainforest Eagle (Custom EAGLE-3 HTTPS Workaround)",
   "codeowners": [
     "@abirismyname"
   ],
@@ -21,6 +21,6 @@
     "aioeagle==1.1.1",
     "eagle100==0.1.1"
   ],
-  "version": "1.1.0",
+  "version": "1.1.1",
   "issue_tracker": "https://github.com/shundor/rainforest_eagle_custom/issues"
 }

@@ -27,7 +27,7 @@ Requires Home Assistant 2025.2 or newer.
    GitHub token with access to it).
 2. In Home Assistant: **HACS → ⋮ → Custom repositories**, add the repo URL with
    category **Integration**.
-3. Find **Rainforest Eagle (custom)** in HACS, click **Download**.
+3. Find **Rainforest Eagle (Custom EAGLE-3 HTTPS Workaround)** in HACS, click **Download**.
 4. Restart Home Assistant.
 
 ### Option B: Manual copy
