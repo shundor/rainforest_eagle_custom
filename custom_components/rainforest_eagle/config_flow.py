@@ -52,6 +52,7 @@ class RainforestEagleConfigFlow(ConfigFlow, domain=DOMAIN):
             )
 
         await self.async_set_unique_id(user_input[CONF_CLOUD_ID])
+        self._abort_if_unique_id_configured()
         errors = {}
 
         try:

@@ -63,7 +63,7 @@ on `dev`:
 | `hub.py` | **New** | HTTPS hub (the fix) |
 | `data.py` | Modified | Use `create_hub()` for device detection |
 | `coordinator.py` | Modified | Use `create_hub()` for polling |
-| `config_flow.py` | Modified | `probatio` → `voluptuous`; `probatio` is only on Core `dev` and isn't in released Home Assistant versions |
+| `config_flow.py` | Modified | `probatio` → `voluptuous`; `probatio` is only on Core `dev` and isn't in released Home Assistant versions. Also aborts with "Device is already configured" if you add an EAGLE that already has an entry (upstream silently replaces it, which Home Assistant now warns about) |
 | `manifest.json` | Modified | Custom name, `version` (required for custom integrations), links, codeowner |
 | `translations/en.json` | **New** | Custom integrations don't get translations built from `strings.json`, so this is generated with the `[%key:common::...]` references resolved |
 | `__init__.py`, `const.py`, `diagnostics.py`, `sensor.py`, `strings.json` | Unchanged | |
@@ -232,6 +232,14 @@ def create_hub(
                  CONF_INSTALL_CODE, default=user_input.get(CONF_INSTALL_CODE)
              ): str,
          }
+@@ -54,6 +52,7 @@
+             )
+ 
+         await self.async_set_unique_id(user_input[CONF_CLOUD_ID])
++        self._abort_if_unique_id_configured()
+         errors = {}
+ 
+         try:
 ```
 
 ### `manifest.json`
@@ -268,7 +276,7 @@ def create_hub(
 +    "aioeagle==1.1.1",
 +    "eagle100==0.1.1"
 +  ],
-+  "version": "1.1.1",
++  "version": "1.1.2",
 +  "issue_tracker": "https://github.com/shundor/rainforest_eagle_custom/issues"
  }
 ```
